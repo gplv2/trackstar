@@ -17,7 +17,7 @@ Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 Route::get('articles', 'ArticlesController@index');
 Route::get('article/{slug}', 'ArticlesController@show');
-Route::get('video/{id}', 'VideoController@show');
+#Route::get('video/{id}', 'VideoController@show');
 Route::get('photo/{id}', 'PhotoController@show');
 
 Route::controllers([
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('articlecategory/{articlecategory}/show', 'Admin\ArticleCategoriesController@show');
     Route::get('articlecategory/{articlecategory}/edit', 'Admin\ArticleCategoriesController@edit');
     Route::get('articlecategory/{articlecategory}/delete', 'Admin\ArticleCategoriesController@delete');
-    Route::get('articlecategory/reorder', 'ArticleCategoriesController@getReorder');
+    #Route::get('articlecategory/reorder', 'ArticleCategoriesController@getReorder');  // does not work!
     Route::resource('articlecategory', 'Admin\ArticleCategoriesController');
 
     # Articles
@@ -53,6 +53,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('article/{article}/delete', 'Admin\ArticleController@delete');
     Route::get('article/reorder', 'Admin\ArticleController@getReorder');
     Route::resource('article', 'Admin\ArticleController');
+    # Devices
+    Route::get('device/data', 'DeviceController@data');
+    Route::get('device/{device}/show', 'DeviceController@show');
+    Route::get('device/{device}/edit', 'DeviceController@edit');
+    Route::get('device/{device}/delete', 'DeviceController@delete');
+    Route::resource('device', 'DeviceController');
 
     # Photo Album
     Route::get('photoalbum/data', 'Admin\PhotoAlbumController@data');
